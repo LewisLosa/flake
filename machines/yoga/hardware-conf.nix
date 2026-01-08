@@ -22,7 +22,7 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d1313ac7-e369-4550-b2ce-02859ffe2c68";
+    device = "/dev/disk/by-label/nixos-root";
     fsType = "ext4";
   };
 
