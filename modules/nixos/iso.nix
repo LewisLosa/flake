@@ -14,9 +14,10 @@
   users.motd = ''
     Hellooooo, oni-chan~!
 
-    if u install the systeem, u can use this command:
+    if u install the system, u can use this command:
 
-    coming soon. :/"
+    sudo bash -c "$(curl -fsSL https://losa.dev/nixos-install)"
+    link redirects to (https://raw.githubusercontent.com/LewisLosa/flake/refs/heads/main/install.sh)
 
   '';
 
