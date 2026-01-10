@@ -38,9 +38,5 @@
     ];
     history.size = 10000;
   };
-  programs.kitty = {
-    settings = lib.mkForce {
-      shell = "zsh";
-    };
-  };
+
 }
