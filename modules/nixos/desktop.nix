@@ -10,7 +10,10 @@
         layout = "tr";
         variant = "";
       };
-      desktopManager.gdm.enable = true;
+      desktopManager.gdm.enable = {
+        enable = true;
+        wayland = true;
+      };
       desktopManager.gnome.enable = true;
     };
     udev.packages = with pkgs; [gnome-settings-daemon];
