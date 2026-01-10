@@ -25,28 +25,22 @@ in {
         statix
         qrencode
         tree
-        fastfetch
-        microfetch
       ]
       ++ (
         if osConfig.networking.hostName != "thinky"
         then [
           # Below packages are for personal machines only; excluded from servers
           # inspo: https://discourse.nixos.org/t/how-to-use-hostname-in-a-path/42612/3
-          starship
-          windsurf
           bun
           just
           gnupg1
           ffmpeg
           nil
-          nixos-rebuild
           nixd
           sops
           statix
           zola
-          localsend
-          kdePackages.kdenlive
+          pkgs-unstable.localsend
         ]
         else [
           # server only
