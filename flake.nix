@@ -10,17 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dotfiles = {
-      url = "git+https://github.com/LewisLosa/dots-hyprland?submodules=1";
-      flake = false;
-    };
-
-    illogical-flake = {
-      url = "github:soymou/illogical-flake";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.dotfiles.follows = "dotfiles";
-    };
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
