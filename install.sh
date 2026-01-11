@@ -46,9 +46,8 @@ umount -R /mnt 2>/dev/null || true
 mkfs.fat -F32 -n NIXOS-BOOT "$BOOT_PART"
 mkfs.ext4 -F -L NIXOS-ROOT "$ROOT_PART"
 
-mount /dev/disk/by-label/NIXOS-ROOT /mnt
-mkdir -p /mnt/boot
-mount /dev/disk/by-label/NIXOS-BOOT /mnt/boot
+mount -L NIXOS-ROOT /mnt
+mount --mkdir -L NIXOS-BOOT /mnt/boot
 
 echo ""
 echo "NixOS partitions mounted successfully"
