@@ -11,8 +11,8 @@
   ];
 
   home = {
-    username = "${vars.username}";
-    homeDirectory = lib.mkMerge ["/home/${vars.username}"];
+    username = vars.username;
+    homeDirectory = "/home/${vars.username}";
     stateVersion = "25.11";
   };
 
@@ -22,7 +22,7 @@
     fastfetch.enable = true;
     nano.enable = true;
     microfetch.enable = true;
-  }
+  };
 
   systemd.user.startServices = "sd-switch";
 }
