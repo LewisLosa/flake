@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.vscode.enable = true;
 
   dconf = {
@@ -11,23 +11,7 @@
           "code.desktop"
           "kitty.desktop"
         ];
-      };
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-      # inspo: https://github.com/NixOS/nixpkgs/issues/114514
-      "org/gnome/mutter" = {
-        # Fractional scaling
-        experimental-features = ["scale-monitor-framebuffer"];
-      };
-      "org/gnome/settings-daemon/plugins/color" = {
-        night-light-enabled = true;
-        night-light-temperature = 3700;
-      };
-      "org/gnome/shell" = {
         disable-user-extensions = false;
-
-        # `gnome-extensions list` for a list
         enabled-extensions = [
           "AlphabeticalAppGrid@stuarthayhurst"
           "appindicatorsupport@rgcjonas.gmail.com"
@@ -35,6 +19,19 @@
           "clipboard-indicator@tudmotu.com"
           "just-perfection-desktop@just-perfection"
         ];
+      };
+
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+
+      "org/gnome/mutter" = {
+        experimental-features = [ "scale-monitor-framebuffer" ];
+      };
+
+      "org/gnome/settings-daemon/plugins/color" = {
+        night-light-enabled = true;
+        night-light-temperature = 3700;
       };
     };
   };
