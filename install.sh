@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-if [ -e /etc/NIXOS ]; then
+if [ -e /etc/nixos ]; then
   echo "this script must be run from nixos live iso"
   exit 1
 fi
