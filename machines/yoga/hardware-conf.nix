@@ -22,12 +22,12 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos-root";
+    device = "/dev/disk/by-label/NIXOS-ROOT";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/nixos-boot";
+    device = "/dev/disk/by-label/NIXOS-BOOT";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
   };
