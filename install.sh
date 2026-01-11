@@ -43,6 +43,7 @@ read -p "type 'yes' to continue: " CONFIRM
 
 umount -R /mnt 2>/dev/null || true
 
+sgdisk -t "${BOOT_NUM}:EF00" "$BOOT_DISK"
 mkfs.fat -F32 -n NIXOS-BOOT "$BOOT_PART"
 mkfs.ext4 -F -L NIXOS-ROOT "$ROOT_PART"
 
