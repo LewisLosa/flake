@@ -33,6 +33,8 @@ if [ "$BOOT_PART" = "$ROOT_PART" ]; then
   exit 1
 fi
 
+BOOT_NUM="$(lsblk -no PARTNUM "$BOOT_PART")"
+
 echo ""
 echo "The installer will FORMAT:"
 echo "  Boot: $BOOT_PART"
