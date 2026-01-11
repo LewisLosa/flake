@@ -18,7 +18,7 @@
 
   programs = {
     htop.enable = true;
-    neofetch.enable = true;
+    btop.enable = true;
     fastfetch.enable = true;
   };
 
