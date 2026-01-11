@@ -21,7 +21,6 @@
     neofetch.enable = true;
     fastfetch.enable = true;
     nano.enable = true;
-    microfetch.enable = true;
   };
 
   systemd.user.startServices = "sd-switch";
