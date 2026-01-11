@@ -31,7 +31,7 @@
           ./../../modules/home-manager/kitty.nix
           ./../../modules/home-manager/fonts.nix
           ./../../modules/home-manager/git.nix
-          ./../../modules/home-manager/hyprland.nix
+          ./../../modules/home-manager/desktop.nix
         ];
       };
     };
