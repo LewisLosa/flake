@@ -3,8 +3,7 @@
   vars,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -53,8 +52,8 @@
               id = "ControlCenter";
               useDistroLogo = true;
             }
-            { id = "WiFi"; }
-            { id = "Bluetooth"; }
+            {id = "WiFi";}
+            {id = "Bluetooth";}
           ];
           center = [
             {

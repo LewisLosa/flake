@@ -1,8 +1,4 @@
-{
-  vars,
-  ...
-}:
-{
+{vars, ...}: {
   imports = [
     ./_zsh.nix
     ./_packages.nix
