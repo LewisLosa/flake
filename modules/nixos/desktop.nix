@@ -1,11 +1,14 @@
-{...}: {
-  services.displayManager.sddm = {
-    wayland.enable = true;
-    enable = true;
-  };
+{ _ }:
+{
+  services = {
+    displayManager.sddm = {
+      wayland.enable = true;
+      enable = true;
+    };
+    gnome.gnome-keyring.enable = true;
+    libinput.enable = true;
 
-  services.gnome.gnome-keyring.enable = true;
-  services.libinput.enable = true;
+  };
 
   programs.ssh.enableAskPassword = true;
 

@@ -1,11 +1,12 @@
-{vars, ...}: {
+{ vars, ... }:
+{
   imports = [
     ./_zsh.nix
     ./_packages.nix
   ];
 
   home = {
-    username = vars.username;
+    inherit (vars) username;
     homeDirectory = "/home/${vars.username}";
     stateVersion = "25.11";
   };
