@@ -1,9 +1,8 @@
 {
-  pkgs,
   lib,
-  vars,
   ...
-}: {
+}:
+{
   programs.kitty = {
     enable = true;
     settings = lib.mkForce {

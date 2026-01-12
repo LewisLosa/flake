@@ -1,10 +1,8 @@
 {
-  lib,
-  config,
-  pkgs,
   vars,
   ...
-}: {
+}:
+{
   imports = [
     ./_zsh.nix
     ./_packages.nix
