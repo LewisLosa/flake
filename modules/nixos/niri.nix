@@ -10,6 +10,7 @@ xdg.portal.config.niri = {
   security.pam.services.swaylock = {};  
   # install package
   environment.systemPackages = with pkgs; [
+    catppuccin-cursors
     xwayland-satellite
     swaylock
     fuzzel
