@@ -1,26 +1,11 @@
 {
   pkgs,
-  vars,
   ...
 }: {
-  services.xserver = {
-    enable = true;
-
-    xkb = {
-      layout = "tr";
-      variant = "";
-    };
-
-    displayManager.sddm = {
+    services.displayManager.sddm = {
+      wayland.enable = true;
       enable = true;
     };
-
-    desktopManager.gnome.enable = true;
-  };
-
-  services.udev.packages = with pkgs; [
-    gnome-settings-daemon
-  ];
 
   services.libinput.enable = true;
 
