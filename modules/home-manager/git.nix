@@ -1,4 +1,5 @@
-{vars, ...}: {
+{ vars, ... }:
+{
   home = {
     # inspo: https://jeppesen.io/git-commit-sign-nix-home-manager-ssh/
     file.".ssh/allowed_signers".text = "* ${vars.sshPublicKey}";
@@ -13,7 +14,9 @@
           inherit (vars) email;
           signingkey = vars.sshPublicKey;
         };
-
+        init = {
+          defaultBranch = "main";
+        };
         commit.gpgsign = true;
         gpg.format = "ssh";
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
