@@ -1,7 +1,5 @@
 # some pieces taked from https://github.com/eh8/chenglab/blob/main/modules/nixos/base.nix
 {
-  inputs,
-  config,
   pkgs,
   vars,
   ...
@@ -26,6 +24,8 @@
     firewall.enable = true;
     networkmanager.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -53,6 +53,8 @@
   };
 
   services = {
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
     openssh = {
       enable = true;
       settings = {

@@ -10,6 +10,7 @@
     inputs.home-manager.nixosModules.home-manager
     ./hardware-conf.nix
     ./../../modules/nixos/desktop.nix
+    ./../../modules/nixos/niri.nix
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/printer.nix
   ];
@@ -26,6 +27,7 @@
     users = {
       "${vars.username}" = {
         imports = [
+          ./../../modules/home-manager/niri.nix
           ./../../modules/home-manager/base.nix
           ./../../modules/home-manager/zen.nix
           ./../../modules/home-manager/kitty.nix

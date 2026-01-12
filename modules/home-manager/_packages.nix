@@ -25,6 +25,7 @@ in {
         statix
         qrencode
         tree
+	      microfetch
       ]
       ++ (
         if osConfig.networking.hostName != "thinky"

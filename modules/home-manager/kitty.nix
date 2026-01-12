@@ -9,7 +9,7 @@
     settings = lib.mkForce {
       scrollback_lines = 10000;
       enable_audio_bell = true;
-      background_opacity = "0.5";
+      background_opacity = "1";
       background_blur = 5;
       font_size = 12.0;
       font_family = "Maple Mono NF";

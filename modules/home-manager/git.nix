@@ -9,7 +9,8 @@
       enable = true;
       settings = {
         user = {
-          inherit (vars) fullName email;
+          name = vars.fullName;
+          inherit (vars) email;
           signingkey = vars.sshPublicKey;
         };
 
