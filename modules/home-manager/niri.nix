@@ -7,13 +7,31 @@
 
   xdg.configFile."niri/config.kdl".source = ./_niri/config.kdl;
 
-  home.pointerCursor = {
-    name = "Catppuccin-Mocha-Blue-Cursors";
-    size = 24;
+# If you change the cursor, also update the "xcursor" variable in ./_niri/config.kdl
+gtk = {
+    enable = true;
+    cursorTheme = {
+      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "catppuccin-mocha-dark-cursors";
+    };
 
-    package =
-      pkgs.catppuccin-cursors.mochaDark;
+  gtk3.extraConfig = {
+    "gtk-cursor-theme-name" = "catppuccin-mocha-dark-cursors";
   };
+  gtk4.extraConfig = {
+    Settings = ''
+    gtk-cursor-theme-name=catppuccin-mocha-dark-cursors
+    '';
+  };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "catppuccin-mocha-dark-cursors";
+    package = pkgs.catppuccin-cursors.mochaDark;
+    size = 24;
+  }; 
   programs.noctalia-shell = {
     enable = true;
     systemd.enable = true;
@@ -48,12 +66,11 @@
 
       general = {
         avatarImage = "/home/${vars.username}/.face";
-        radiusRatio = 0.2;
       };
 
       location = {
         monthBeforeDay = true;
-        name = "Istanbul, Turkey";
+        name = "Istanbul, Türkiye";
       };
     };
   };
