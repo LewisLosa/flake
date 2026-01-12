@@ -1,7 +1,7 @@
 {
   inputs,
   vars,
-  outputs, 
+  outputs,
   ...
 }: {
   imports = [

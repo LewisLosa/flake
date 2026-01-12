@@ -1,11 +1,8 @@
-{
-  pkgs,
-  ...
-}: {
-    services.displayManager.sddm = {
-      wayland.enable = true;
-      enable = true;
-    };
+{pkgs, ...}: {
+  services.displayManager.sddm = {
+    wayland.enable = true;
+    enable = true;
+  };
 
   services.libinput.enable = true;
 

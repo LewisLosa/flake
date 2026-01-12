@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.vscode.enable = true;
 
   dconf = {
@@ -26,7 +26,7 @@
       };
 
       "org/gnome/mutter" = {
-        experimental-features = [ "scale-monitor-framebuffer" ];
+        experimental-features = ["scale-monitor-framebuffer"];
       };
 
       "org/gnome/settings-daemon/plugins/color" = {
