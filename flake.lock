@@ -55,7 +55,7 @@
     "noctalia": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
@@ -78,7 +78,28 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
+        "windscribe-bin": "windscribe-bin",
         "zen-browser": "zen-browser"
+      }
+    },
+    "windscribe-bin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1747016386,
+        "narHash": "sha256-mh7dscKnz3uTc26vaO2G+0qbpJMKD1DixQJ6owmrX8M=",
+        "owner": "itzderock",
+        "repo": "windscribe-nix",
+        "rev": "a487457d083450cd3bff505990e64b1696b204d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itzderock",
+        "repo": "windscribe-nix",
+        "type": "github"
       }
     },
     "zen-browser": {

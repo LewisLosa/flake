@@ -3,7 +3,8 @@
   vars,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -14,8 +15,11 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      package = pkgs.catppuccin-cursors.mochaDark;
       name = "catppuccin-mocha-dark-cursors";
+    };
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
     };
 
     gtk3.extraConfig = {
@@ -49,8 +53,8 @@
               id = "ControlCenter";
               useDistroLogo = true;
             }
-            {id = "WiFi";}
-            {id = "Bluetooth";}
+            { id = "WiFi"; }
+            { id = "Bluetooth"; }
           ];
           center = [
             {
@@ -79,7 +83,7 @@
       colorSchemes.predefinedScheme = "Monochrome";
 
       general = {
-        avatarImage = "/home/${vars.username}/.face";
+        avatarImage = "/home/${vars.username}/face.jpg";
       };
 
       location = {
