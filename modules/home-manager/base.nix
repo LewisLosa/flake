@@ -5,6 +5,8 @@
     ./_packages.nix
   ];
 
+  home.file.".config/niri/config.kdl".enable = false;
+
   home = {
     inherit (vars) username;
     homeDirectory = "/home/${vars.username}";

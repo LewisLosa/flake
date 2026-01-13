@@ -5,7 +5,7 @@ let
   version = "3.1.8";
 
   src = pkgs.fetchurl {
-    url = "file://${./cider-v3.1.8-linux-x64.AppImage}";
+    url = "https://files.sengozhome.losa.dev/cider-v3.1.8-linux-x64.AppImage"; # my basic private webdav server.
     sha256 = "sha256-s1CMYAfDULaEyO0jZguA2bA7D7ogqRR4v/LkMD+luKw=";
   };
 
