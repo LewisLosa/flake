@@ -3,14 +3,17 @@
   inputs,
   osConfig,
   ...
-}: let
+}:
+let
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs.stdenv.hostPlatform) system;
     config.allowUnfree = true;
   };
-in {
+in
+{
   home = {
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
         curl
         dig
@@ -28,30 +31,31 @@ in {
         microfetch
       ]
       ++ (
-        if osConfig.networking.hostName != "thinky"
-        then [
-          # Below packages are for personal machines only; excluded from servers
-          # inspo: https://discourse.nixos.org/t/how-to-use-hostname-in-a-path/42612/3
-          seahorse
-          nil
-          nixd
-          bun
-          just
-          gnupg1
-          ffmpeg
-          nil
-          nixd
-          sops
-          statix
-          zola
-          nwg-look
+        if osConfig.networking.hostName != "thinky" then
+          [
+            # Below packages are for personal machines only; excluded from servers
+            # inspo: https://discourse.nixos.org/t/how-to-use-hostname-in-a-path/42612/3
+            seahorse
+            nil
+            nixd
+            bun
+            just
+            gnupg1
+            ffmpeg
+            nil
+            nixd
+            sops
+            statix
+            zola
+            nwg-look
 
-          pkgs-unstable.vesktop
-          pkgs-unstable.localsend
-        ]
-        else [
-          # server only
-        ]
+            pkgs-unstable.vesktop
+            pkgs-unstable.localsend
+          ]
+        else
+          [
+            # server only
+          ]
       );
   };
 }

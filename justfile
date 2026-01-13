@@ -2,7 +2,7 @@ default:
     just --list
 
 deploy machine='':
-    @if [ -z "{{ machine }}" ]; then \
+    if [ -z "{{ machine }}" ]; then \
       nixos-rebuild switch --sudo --flake .; \
     else \
       nixos-rebuild switch --sudo --flake ".#{{ machine }}"; \

@@ -1,15 +1,14 @@
 {
-  inputs,
-  vars,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
-    inputs.noctalia.homeModules.default
+    ./dms.nix
   ];
 
-  xdg.configFile."niri/config.kdl".source = ./_niri/config.kdl;
-
+  # xdg.configFile."niri/config.kdl".source = ./_niri/config.kdl;
+  programs.vscode.enable = true;
   # If you change the cursor, also update the "xcursor" variable in ./_niri/config.kdl
   gtk = {
     enable = true;
@@ -37,58 +36,5 @@
     name = "catppuccin-mocha-dark-cursors";
     package = pkgs.catppuccin-cursors.mochaDark;
     size = 24;
-  };
-  programs.noctalia-shell = {
-    enable = true;
-    systemd.enable = true;
-    settings = {
-      bar = {
-        density = "compact";
-        position = "top";
-        showCapsule = false;
-        widgets = {
-          left = [
-            {
-              id = "ControlCenter";
-              useDistroLogo = true;
-            }
-            {id = "WiFi";}
-            {id = "Bluetooth";}
-          ];
-          center = [
-            {
-              id = "Workspace";
-              hideUnoccupied = false;
-              labelMode = "none";
-            }
-          ];
-          right = [
-            {
-              id = "Battery";
-              alwaysShowPercentage = false;
-              warningThreshold = 30;
-            }
-            {
-              id = "Clock";
-              formatHorizontal = "HH:mm";
-              formatVertical = "HH mm";
-              useMonospacedFont = true;
-              usePrimaryColor = true;
-            }
-          ];
-        };
-      };
-
-      colorSchemes.predefinedScheme = "Monochrome";
-
-      general = {
-        avatarImage = "/home/${vars.username}/face.jpg";
-      };
-
-      location = {
-        monthBeforeDay = true;
-        name = "Istanbul, Türkiye";
-      };
-    };
   };
 }
