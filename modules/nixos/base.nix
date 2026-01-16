@@ -59,6 +59,8 @@
   services = {
     power-profiles-daemon.enable = true;
     upower.enable = true;
+    tailscale.enable = true;
+    accounts-daemon.enable = true;
     openssh = {
       enable = true;
       settings = {

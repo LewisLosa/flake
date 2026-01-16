@@ -6,7 +6,6 @@ _: {
     };
     gnome.gnome-keyring.enable = true;
     libinput.enable = true;
-
   };
 
   programs.ssh.enableAskPassword = true;

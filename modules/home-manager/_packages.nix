@@ -29,12 +29,15 @@ in
         qrencode
         tree
         microfetch
+        yazi
       ]
       ++ (
         if osConfig.networking.hostName != "thinky" then
           [
             # Below packages are for personal machines only; excluded from servers
             # inspo: https://discourse.nixos.org/t/how-to-use-hostname-in-a-path/42612/3
+            stow
+            nautilus
             seahorse
             nil
             nixd
@@ -48,7 +51,9 @@ in
             statix
             zola
             nwg-look
-
+            kitty
+            zed-editor
+            vscode
             pkgs-unstable.vesktop
             pkgs-unstable.localsend
           ]

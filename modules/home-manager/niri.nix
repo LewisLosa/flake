@@ -3,12 +3,6 @@
   ...
 }:
 {
-  imports = [
-    ./dms.nix
-  ];
-
-  # xdg.configFile."niri/config.kdl".source = ./_niri/config.kdl;
-  programs.vscode.enable = true;
   # If you change the cursor, also update the "xcursor" variable in ./_niri/config.kdl
   gtk = {
     enable = true;
@@ -18,6 +12,11 @@
     theme = {
       name = "adw-gtk3";
       package = pkgs.adw-gtk3;
+    };
+
+    iconTheme = {
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme;
     };
 
     gtk3.extraConfig = {
@@ -30,11 +29,12 @@
     };
   };
 
+  xdg.configFile."gtk-4.0/gtk.css".force = true;
+
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
     name = "catppuccin-mocha-dark-cursors";
     package = pkgs.catppuccin-cursors.mochaDark;
-    size = 24;
   };
 }

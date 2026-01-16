@@ -1,11 +1,8 @@
-{ vars, ... }:
-{
+{vars, ...}: {
   imports = [
     ./_zsh.nix
     ./_packages.nix
   ];
-
-  home.file.".config/niri/config.kdl".enable = false;
 
   home = {
     inherit (vars) username;

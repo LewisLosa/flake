@@ -1,10 +1,10 @@
 {
   inputs,
+  pkgs-unstable,
   vars,
   outputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./hardware-conf.nix
@@ -16,7 +16,14 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs vars; };
+    extraSpecialArgs = {
+      inherit
+        inputs
+        outputs
+        vars
+        pkgs-unstable
+        ;
+    };
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";
@@ -30,9 +37,9 @@
           ./../../modules/home-manager/niri.nix
           ./../../modules/home-manager/base.nix
           ./../../modules/home-manager/zen.nix
-          ./../../modules/home-manager/kitty.nix
           ./../../modules/home-manager/fonts.nix
           ./../../modules/home-manager/git.nix
+          ./../../modules/home-manager/dms.nix
         ];
       };
     };

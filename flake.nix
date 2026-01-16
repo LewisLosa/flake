@@ -32,51 +32,62 @@
     };
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    danksearch = {
+      url = "github:AvengeMedia/danksearch";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      vars = import ./vars.nix;
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    vars = import ./vars.nix;
 
-      systems = [ "x86_64-linux" ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+    systems = ["x86_64-linux"];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      mkNixOSConfig =
-        path:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs vars;
-            pkgs-unstable = import inputs.nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-          };
-          modules = [
-            path
-          ];
+    pkgs-unstable = import inputs.nixpkgs-unstable {
+      system = "x86_64-linux";
+    };
+
+    mkNixOSConfig = path:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            vars
+            pkgs-unstable
+            ;
         };
-    in
-    {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+        modules = [
+          path
+        ];
+      };
+  in {
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-      nixosConfigurations = {
-        yoga = mkNixOSConfig ./machines/yoga/conf.nix;
-        isochan = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs vars; };
-          modules = [
-            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-            ./machines/isochan/conf.nix
-          ];
-        };
+    nixosConfigurations = {
+      yoga = mkNixOSConfig ./machines/yoga/conf.nix;
+      isochan = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs outputs vars;};
+        modules = [
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ./machines/isochan/conf.nix
+        ];
       };
     };
+  };
 }
