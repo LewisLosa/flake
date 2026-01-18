@@ -9,6 +9,7 @@ _: {
   };
 
   programs.ssh.enableAskPassword = true;
+  programs.nix-ld.enable = true;
 
   environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
 }

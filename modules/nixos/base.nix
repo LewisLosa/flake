@@ -11,7 +11,6 @@
   # variables
   time.timeZone = "${vars.timezone}";
   console.keyMap = "${vars.keyMap}";
-
   boot.loader = {
     systemd-boot = {
       enable = true;
