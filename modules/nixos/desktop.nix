@@ -8,8 +8,14 @@ _: {
     libinput.enable = true;
   };
 
-  programs.ssh.enableAskPassword = true;
-  programs.nix-ld.enable = true;
+  programs = {
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
+    ssh.enableAskPassword = true;
+    nix-ld.enable = true;
+  };
 
   environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
 }

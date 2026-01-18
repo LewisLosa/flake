@@ -57,7 +57,6 @@ in
             zed-editor
             vscode
             pkgs-unstable.vesktop
-            pkgs-unstable.localsend
           ]
         else
           [
