@@ -4,7 +4,8 @@
   vars,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./hardware-conf.nix
@@ -12,6 +13,7 @@
     ./../../modules/nixos/niri.nix
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/printer.nix
+    ./../../modules/nixos/amdgpu.nix
     ./../../pkgs/default.nix
   ];
 
