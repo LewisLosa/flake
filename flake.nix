@@ -80,6 +80,7 @@
 
     nixosConfigurations = {
       yoga = mkNixOSConfig ./machines/yoga/conf.nix;
+      asus = mkNixOSConfig ./machines/asus/conf.nix;
       isochan = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs vars;};
