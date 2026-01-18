@@ -47,6 +47,6 @@
     };
   };
 
-  networking.hostName = "yoga";
+  networking.hostName = "asus";
   system.stateVersion = "25.11";
 }
