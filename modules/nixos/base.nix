@@ -3,7 +3,8 @@
   pkgs,
   vars,
   ...
-}: {
+}:
+{
   imports = [
     ./_packages.nix
   ];
@@ -49,6 +50,7 @@
       "networkmanager"
       "wheel"
       "windscribe"
+      "adbusers"
     ];
     openssh.authorizedKeys.keys = [
       vars.sshPublicKey

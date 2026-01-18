@@ -18,7 +18,10 @@
     polkit.enable = true; # polkit
     pam.services.swaylock = { };
   };
-  programs.niri.enable = true;
+  programs = {
+    niri.enable = true;
+    adb.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     mako
