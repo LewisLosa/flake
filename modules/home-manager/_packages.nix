@@ -15,6 +15,8 @@ in
     packages =
       with pkgs;
       [
+        cider-2
+        speedtest-cli
         curl
         dig
         figlet
