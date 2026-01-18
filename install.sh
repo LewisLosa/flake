@@ -33,7 +33,7 @@ BOOT_DISK="$(lsblk -no PKNAME "$BOOT_PART")"
 [ -n "$BOOT_DISK" ] || { echo "cannot determine disk for $BOOT_PART"; exit 1; }
 BOOT_DISK="/dev/$BOOT_DISK"
 
-BOOT_NUM="$(lsblk -no PARTNUM "$BOOT_PART")"
+BOOT_NUM="$(lsblk -no PARTN "$BOOT_PART")"
 [ -n "$BOOT_NUM" ] || { echo "cannot determine partition number for $BOOT_PART"; exit 1; }
 
 echo ""
