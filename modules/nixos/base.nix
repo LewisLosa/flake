@@ -40,8 +40,7 @@
     };
   };
 
-  # TODO After configuring sops-nix, change the value of users.mutableUsers to false and uncomment hashedPassword line (add file path)
-  users.mutableUsers = true;
+  # TODO After configuring sops-nix, change the value of users.mutableUsers to fas
   users.users.${vars.username} = {
     isNormalUser = true;
     description = vars.username;

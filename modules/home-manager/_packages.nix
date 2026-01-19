@@ -39,6 +39,12 @@ in
             # Below packages are for personal machines only; excluded from servers
             # inspo: https://discourse.nixos.org/t/how-to-use-hostname-in-a-path/42612/3
             stow
+            kdePackages.qqc2-desktop-style
+            kdePackages.kio-extras
+            kdePackages.kimageformats
+            kdePackages.kdegraphics-thumbnailers
+            ffmpegthumbnailer
+            kdePackages.dolphin
             nautilus
             seahorse
             nil
@@ -47,7 +53,6 @@ in
             just
             gnupg1
             ffmpeg
-            nil
             nixd
             sops
             statix

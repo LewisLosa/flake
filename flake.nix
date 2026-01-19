@@ -44,51 +44,57 @@
       url = "github:AvengeMedia/danksearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    vars = import ./vars.nix;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      vars = import ./vars.nix;
 
-    systems = ["x86_64-linux"];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+      systems = [ "x86_64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      system = "x86_64-linux";
-    };
-
-    mkNixOSConfig = path:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            vars
-            pkgs-unstable
-            ;
-        };
-        modules = [
-          path
-        ];
-      };
-  in {
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-    nixosConfigurations = {
-      yoga = mkNixOSConfig ./machines/yoga/conf.nix;
-      asus = mkNixOSConfig ./machines/asus/conf.nix;
-      isochan = nixpkgs.lib.nixosSystem {
+      pkgs-unstable = import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs vars;};
-        modules = [
-          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-          ./machines/isochan/conf.nix
-        ];
+      };
+
+      mkNixOSConfig =
+        path:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              vars
+              pkgs-unstable
+              ;
+          };
+          modules = [
+            path
+          ];
+        };
+    in
+    {
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+      nixosConfigurations = {
+        yoga = mkNixOSConfig ./machines/yoga/conf.nix;
+        asus = mkNixOSConfig ./machines/asus/conf.nix;
+        isochan = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs outputs vars; };
+          modules = [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+            ./machines/isochan/conf.nix
+          ];
+        };
       };
     };
-  };
 }

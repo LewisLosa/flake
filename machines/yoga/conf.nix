@@ -8,12 +8,15 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.catppuccin.nixosModules.catppuccin
     ./hardware-conf.nix
     ./../../modules/nixos/desktop.nix
     ./../../modules/nixos/niri.nix
     ./../../modules/nixos/base.nix
     ./../../modules/nixos/printer.nix
     ./../../modules/nixos/amdgpu.nix
+    ./../../modules/nixos/kdeconnect.nix
+    ./../../modules/nixos/catppuccin.nix
     ./../../pkgs/default.nix
   ];
 
@@ -36,12 +39,15 @@
     users = {
       "${vars.username}" = {
         imports = [
+          inputs.catppuccin.homeModules.catppuccin
+          ./../../modules/home-manager/catppuccin.nix
           ./../../modules/home-manager/niri.nix
           ./../../modules/home-manager/base.nix
           ./../../modules/home-manager/zen.nix
           ./../../modules/home-manager/fonts.nix
           ./../../modules/home-manager/git.nix
           ./../../modules/home-manager/dms.nix
+          ./../../modules/home-manager/kdeconnect.nix
         ];
       };
     };
