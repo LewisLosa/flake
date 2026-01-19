@@ -66,7 +66,7 @@
     size = 24;
   };
 
-  environment.sessionVariables = {
+  home.sessionVariables = {
     XCURSOR_THEME = "catppuccin-${theme.flavor}-dark-cursors";
     XCURSOR_SIZE = "24";
   };
