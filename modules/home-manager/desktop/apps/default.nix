@@ -21,8 +21,8 @@
     seahorse
     kitty
     zed-editor
-    vscode
     cider-2
+    pkgs-unstable.vscode
     pkgs-unstable.vesktop
 
     # games
