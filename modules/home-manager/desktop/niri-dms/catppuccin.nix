@@ -3,7 +3,8 @@
   lib,
   theme,
   ...
-}: {
+}:
+{
   catppuccin = lib.mkForce {
     enable = true;
     inherit (theme) flavor accent;
@@ -41,9 +42,9 @@
     theme = {
       name = "catppuccin-${theme.flavor}-${theme.accent}-standard";
       package = pkgs.catppuccin-gtk.override {
-        accents = [theme.accent];
+        accents = [ theme.accent ];
         size = "standard";
-        tweaks = [];
+        tweaks = [ ];
         variant = theme.flavor;
       };
     };
@@ -62,7 +63,12 @@
     x11.enable = true;
     name = "catppuccin-${theme.flavor}-dark-cursors";
     package = pkgs.catppuccin-cursors."${theme.flavor}Dark";
-    size = 16;
+    size = 24;
+  };
+
+  environment.sessionVariables = {
+    XCURSOR_THEME = "catppuccin-${theme.flavor}-dark-cursors";
+    XCURSOR_SIZE = "24";
   };
 
   xdg.configFile."gtk-4.0/gtk.css".force = true;
