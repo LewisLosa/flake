@@ -8,49 +8,52 @@
   home.packages =
     with pkgs;
     [
-      cider-2
-      speedtest-cli
-      curl
-      dig
       figlet
       lolcat
       cowsay
-      wget
-      imagemagick
-      openssl
-      jq
-      kopia
-      statix
-      qrencode
-      tree
-      microfetch
       yazi
+      microfetch
     ]
     ++ (
       if osConfig.networking.hostName != "thinky" then
         [
-          stow
+          # dolphin
+          kdePackages.dolphin
           kdePackages.qqc2-desktop-style
           kdePackages.kio-extras
           kdePackages.kimageformats
           kdePackages.kdegraphics-thumbnailers
           ffmpegthumbnailer
-          kdePackages.dolphin
+
+          # gui
           nautilus
           seahorse
-          nil
-          nixd
-          bun
+          kitty
+          zed-editor
+          vscode
+          cider-2
+          pkgs-unstable.vesktop
+
+          # games
+          pkgs-unstable.prismlauncher
+
+          # tools
+          stow
           just
           gnupg1
           ffmpeg
           sops
+
+          # development
+          bun
+
+          # nix language
+          nil
+          nixd
+
+          # other
           zola
           nwg-look
-          kitty
-          zed-editor
-          vscode
-          pkgs-unstable.vesktop
         ]
       else
         [ ]
