@@ -2,11 +2,9 @@
   lib,
   vars,
   ...
-}:
-let
+}: let
   colorSchemePath = "/home/${vars.username}/.config";
-in
-{
+in {
   qt = {
     enable = true;
     platformTheme.name = "qtct";
@@ -23,7 +21,7 @@ in
     '';
 
     "qt5ct/qt5ct.conf" = lib.mkDefault {
-      text = lib.generators.toINI { } {
+      text = lib.generators.toINI {} {
         Appearance = {
           custom_palette = "true";
           icon_theme = "Papirus-Dark";
@@ -34,7 +32,7 @@ in
     };
 
     "qt6ct/qt6ct.conf" = lib.mkDefault {
-      text = lib.generators.toINI { } {
+      text = lib.generators.toINI {} {
         Appearance = {
           custom_palette = "true";
           icon_theme = "Papirus-Dark";

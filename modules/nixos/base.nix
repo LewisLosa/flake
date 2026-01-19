@@ -1,9 +1,9 @@
 {
   pkgs,
   vars,
+  pkgs-unstable,
   ...
-}:
-{
+}: {
   imports = [
     ./_packages.nix
   ];
@@ -48,6 +48,7 @@
       "wheel"
       "windscribe"
       "adbusers"
+      "gamemode"
     ];
     openssh.authorizedKeys.keys = [
       vars.sshPublicKey
@@ -57,7 +58,10 @@
   services = {
     power-profiles-daemon.enable = true;
     upower.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      package = pkgs-unstable.tailscale;
+    };
     accounts-daemon.enable = true;
     openssh = {
       enable = true;

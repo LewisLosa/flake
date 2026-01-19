@@ -1,61 +1,28 @@
-{
-  pkgs,
-  pkgs-unstable,
-  osConfig,
-  ...
-}:
-{
-  home.packages =
-    with pkgs;
-    [
-      figlet
-      lolcat
-      cowsay
-      yazi
-      microfetch
-    ]
-    ++ (
-      if osConfig.networking.hostName != "thinky" then
-        [
-          # dolphin
-          kdePackages.dolphin
-          kdePackages.qqc2-desktop-style
-          kdePackages.kio-extras
-          kdePackages.kimageformats
-          kdePackages.kdegraphics-thumbnailers
-          ffmpegthumbnailer
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    # fun
+    figlet
+    lolcat
+    cowsay
+    yazi
+    microfetch
 
-          # gui
-          nautilus
-          seahorse
-          kitty
-          zed-editor
-          vscode
-          cider-2
-          pkgs-unstable.vesktop
+    # tools
+    stow
+    just
+    gnupg1
+    ffmpeg
+    sops
 
-          # games
-          pkgs-unstable.prismlauncher
+    # development
+    bun
 
-          # tools
-          stow
-          just
-          gnupg1
-          ffmpeg
-          sops
+    # nix language
+    nil
+    nixd
 
-          # development
-          bun
-
-          # nix language
-          nil
-          nixd
-
-          # other
-          zola
-          nwg-look
-        ]
-      else
-        [ ]
-    );
+    # other
+    zola
+    nwg-look
+  ];
 }

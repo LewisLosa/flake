@@ -1,9 +1,8 @@
-_: {
+{pkgs, ...}: {
+  imports = [
+    ./apps
+  ];
   services = {
-    displayManager.sddm = {
-      wayland.enable = true;
-      enable = true;
-    };
     gnome.gnome-keyring.enable = true;
     libinput.enable = true;
   };
@@ -13,8 +12,12 @@ _: {
       enable = true;
       openFirewall = true;
     };
-    ssh.enableAskPassword = true;
+    ssh = {
+      askPassword = "${pkgs.gcr}/libexec/gcr-ssh-askpass";
+      enableAskPassword = true;
+    };
     nix-ld.enable = true;
+    adb.enable = true; # for my android phone :D
   };
 
   environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
