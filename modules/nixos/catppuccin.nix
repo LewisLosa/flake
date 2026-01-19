@@ -1,14 +1,8 @@
-{ ... }:
-let
-  accent = "lavender";
-  flavor = "mocha";
-in
+{ theme, ... }:
 {
-  # Catppuccin theme for SDDM
   catppuccin.sddm = {
     enable = true;
-    flavor = flavor;
-    accent = accent;
+    inherit (theme) flavor accent;
     font = "Noto Sans";
     fontSize = "12";
     background = "${./_sddm/bunnies-road.png}";

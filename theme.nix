@@ -1,0 +1,4 @@
+{
+  accent = "lavender";
+  flavor = "mocha";
+}

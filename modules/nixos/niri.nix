@@ -10,14 +10,15 @@
 
   services = {
     windscribe.enable = true;
-    gnome.gnome-keyring.enable = true; # secret service
-    gvfs.enable = true; # for nautilus
+    gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
   };
 
   security = {
-    polkit.enable = true; # polkit
+    polkit.enable = true;
     pam.services.swaylock = { };
   };
+
   programs = {
     niri.enable = true;
     adb.enable = true;
@@ -28,6 +29,5 @@
     catppuccin-cursors
     xwayland-satellite
     swayidle
-    # ... maybe other stuff
   ];
 }

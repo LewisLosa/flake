@@ -3,6 +3,7 @@
   pkgs-unstable,
   vars,
   outputs,
+  theme,
   ...
 }:
 {
@@ -26,30 +27,26 @@
         inputs
         outputs
         vars
+        theme
         pkgs-unstable
         ;
     };
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";
-    backupCommand = ''
-      mv -f "$1" "$1.bak"
-    '';
 
-    users = {
-      "${vars.username}" = {
-        imports = [
-          inputs.catppuccin.homeModules.catppuccin
-          ./../../modules/home-manager/catppuccin.nix
-          ./../../modules/home-manager/niri.nix
-          ./../../modules/home-manager/base.nix
-          ./../../modules/home-manager/zen.nix
-          ./../../modules/home-manager/fonts.nix
-          ./../../modules/home-manager/git.nix
-          ./../../modules/home-manager/dms.nix
-          ./../../modules/home-manager/kdeconnect.nix
-        ];
-      };
+    users.${vars.username} = {
+      imports = [
+        inputs.catppuccin.homeModules.catppuccin
+        ./../../modules/home-manager/catppuccin.nix
+        ./../../modules/home-manager/niri.nix
+        ./../../modules/home-manager/base.nix
+        ./../../modules/home-manager/zen.nix
+        ./../../modules/home-manager/fonts.nix
+        ./../../modules/home-manager/git.nix
+        ./../../modules/home-manager/dms.nix
+        ./../../modules/home-manager/kdeconnect.nix
+      ];
     };
   };
 

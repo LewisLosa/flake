@@ -1,4 +1,6 @@
-{
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = ["amdgpu"];
+_: {
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+  };
 }

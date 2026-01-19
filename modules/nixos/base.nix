@@ -1,4 +1,3 @@
-# some pieces taked from https://github.com/eh8/chenglab/blob/main/modules/nixos/base.nix
 {
   pkgs,
   vars,
@@ -8,9 +7,10 @@
   imports = [
     ./_packages.nix
   ];
-  # variables
-  time.timeZone = "${vars.timezone}";
-  console.keyMap = "${vars.keyMap}";
+
+  time.timeZone = vars.timezone;
+  console.keyMap = vars.keyMap;
+
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -40,7 +40,6 @@
     };
   };
 
-  # TODO After configuring sops-nix, change the value of users.mutableUsers to fas
   users.users.${vars.username} = {
     isNormalUser = true;
     description = vars.username;
@@ -53,7 +52,6 @@
     openssh.authorizedKeys.keys = [
       vars.sshPublicKey
     ];
-    # hashedPasswordFile = "";
   };
 
   services = {
@@ -70,10 +68,9 @@
       };
       openFirewall = true;
     };
-    fstrim.enable = true; # for ssd
+    fstrim.enable = true;
   };
 
-  # inspo: https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
       ExecStart = [
@@ -82,6 +79,7 @@
       ];
     };
   };
+
   security.sudo.wheelNeedsPassword = false;
   zramSwap.enable = true;
 }

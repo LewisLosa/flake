@@ -1,77 +1,68 @@
-{ pkgs, lib, ... }:
-let
-  accent = "lavender";
-  flavor = "mocha";
-in
 {
-  # Catppuccin global configuration
+  pkgs,
+  lib,
+  theme,
+  ...
+}:
+{
   catppuccin = lib.mkForce {
     enable = true;
-    flavor = flavor;
-    accent = accent;
+    inherit (theme) flavor accent;
 
     kvantum = {
-    	enable = false;
+      enable = false;
       assertStyle = false;
     };
     qt5ct = {
-    	enable = false;
+      enable = false;
       assertStyle = false;
     };
 
     cursors = {
       enable = true;
       accent = "dark";
-      flavor = flavor;
+      inherit (theme) flavor;
     };
 
     gtk.icon = {
       enable = true;
-      accent = accent;
-      flavor = flavor;
+      inherit (theme) accent flavor;
     };
   };
 
-  # GTK theme configuration (manual, since catppuccin.gtk module was removed)
   gtk = lib.mkForce {
     enable = true;
 
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        accent = accent;
-        flavor = flavor;
+        inherit (theme) accent flavor;
       };
     };
     theme = {
-      name = "catppuccin-${flavor}-${accent}-standard";
+      name = "catppuccin-${theme.flavor}-${theme.accent}-standard";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ accent ];
+        accents = [ theme.accent ];
         size = "standard";
         tweaks = [ ];
-        variant = flavor;
+        variant = theme.flavor;
       };
     };
 
-    gtk3 = {
-      extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-      };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
     };
 
-    gtk4 = {
-      extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
-  # Pointer cursor configuration
   home.pointerCursor = lib.mkForce {
     gtk.enable = true;
     x11.enable = true;
-    name = "catppuccin-${flavor}-dark-cursors";
-    package = pkgs.catppuccin-cursors."${flavor}Dark";
+    name = "catppuccin-${theme.flavor}-dark-cursors";
+    package = pkgs.catppuccin-cursors."${theme.flavor}Dark";
     size = 16;
   };
 

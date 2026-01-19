@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,12 +57,15 @@
     let
       inherit (self) outputs;
       vars = import ./vars.nix;
+      theme = import ./theme.nix;
 
-      systems = [ "x86_64-linux" ];
+      system = "x86_64-linux";
+      systems = [ system ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
       pkgs-unstable = import inputs.nixpkgs-unstable {
-        system = "x86_64-linux";
+        inherit system;
+        config.allowUnfree = true;
       };
 
       mkNixOSConfig =
@@ -73,12 +76,11 @@
               inputs
               outputs
               vars
+              theme
               pkgs-unstable
               ;
           };
-          modules = [
-            path
-          ];
+          modules = [ path ];
         };
     in
     {
@@ -88,8 +90,15 @@
         yoga = mkNixOSConfig ./machines/yoga/conf.nix;
         asus = mkNixOSConfig ./machines/asus/conf.nix;
         isochan = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs vars; };
+          inherit system;
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              vars
+              theme
+              ;
+          };
           modules = [
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
             ./machines/isochan/conf.nix

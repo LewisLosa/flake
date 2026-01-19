@@ -1,5 +1,3 @@
-{
-  services = {
-    kdeconnect.enable = true;
-  };
+_: {
+  services.kdeconnect.enable = true;
 }
