@@ -24,7 +24,7 @@
     };
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "bak";
+    backupFileExtension = "hm-bak-" + (inputs.self.shortRev or "dirty");
   };
 
   networking.hostName = "asus";
