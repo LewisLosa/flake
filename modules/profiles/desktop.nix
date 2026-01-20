@@ -22,6 +22,7 @@
       ../home-manager/git.nix
       ../home-manager/desktop
       ../home-manager/desktop/niri-dms
+      ../home-manager/shell.nix
     ];
   };
 }
