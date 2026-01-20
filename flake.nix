@@ -21,11 +21,6 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    windscribe-bin = {
-      url = "github:itzderock/windscribe-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
     dms = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,44 +39,48 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    vars = import ./vars.nix;
-    theme = import ./theme.nix;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      vars = import ./vars.nix;
+      theme = import ./theme.nix;
 
-    system = "x86_64-linux";
-    systems = [system];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+      system = "x86_64-linux";
+      systems = [ system ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
-    mkNixOSConfig = path:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            vars
-            theme
-            pkgs-unstable
-            ;
-        };
-        modules = [path];
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
-  in {
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    nixosConfigurations = {
-      yoga = mkNixOSConfig ./machines/yoga;
-      asus = mkNixOSConfig ./machines/asus;
-      isochan = mkNixOSConfig ./machines/isochan;
+      mkNixOSConfig =
+        path:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              vars
+              theme
+              pkgs-unstable
+              ;
+          };
+          modules = [ path ];
+        };
+    in
+    {
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+      nixosConfigurations = {
+        yoga = mkNixOSConfig ./machines/yoga;
+        asus = mkNixOSConfig ./machines/asus;
+        isochan = mkNixOSConfig ./machines/isochan;
+      };
     };
-  };
 }

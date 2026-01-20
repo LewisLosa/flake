@@ -2,20 +2,19 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
-    inputs.windscribe-bin.nixosModules.default
     ./sddm
   ];
 
   services = {
-    windscribe.enable = true;
     gvfs.enable = true;
   };
 
   security = {
     polkit.enable = true;
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
   };
 
   programs = {

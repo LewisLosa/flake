@@ -3,7 +3,8 @@
   vars,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     ./_packages.nix
   ];
@@ -46,7 +47,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "windscribe"
       "adbusers"
       "gamemode"
     ];
