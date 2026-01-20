@@ -13,6 +13,9 @@
         eval "$(ssh-agent -s)" &> /dev/null
         ssh-add ~/.ssh/id_ed25519 &> /dev/null
       fi
+      if [ -n "$IN_NIX_SHELL" ]; then
+         PROMPT="(nix) $PROMPT"
+      fi
     '';
     zplug = {
       enable = true;

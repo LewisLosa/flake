@@ -1,45 +1,49 @@
-{pkgs-unstable ? import <nixpkgs> {}}: let
-  packages = [
-    "bun"
-    "nodejs"
-    "prisma-engines"
-    "prisma"
-    "openssl"
-    "git"
-    "curl"
-    "wget"
-    "jq"
-    "ripgrep"
-    "fd"
-    "fzf"
+{ pkgs-unstable ? import <nixpkgs> {} }:
+
+let
+  pkgs = pkgs-unstable;
+  lib = pkgs.lib;
+
+  myPackages = [
+    pkgs.bun
+    pkgs.nodejs
+    pkgs.prisma-engines
+    pkgs.prisma
   ];
 
-  echoPackages =
-    builtins.concatStringsSep "\n"
-    (map (
-      i:
-        "echo \"" + builtins.concatStringsSep ", " (builtins.take 10 (builtins.drop (i * 10) packages)) + "\""
-    ) (builtins.genList (i: i) ((builtins.length packages + 9) / 10)));
+  # Convert list to grid
+  formatToGrid = { items, perLine ? 10, sep ? ", " }:
+    let
+      names = map (item: item.pname or item.name) items;
+      len = builtins.length names;
+      numLines = (len + perLine - 1) / perLine;
+
+      # split list into chunks
+      makeLine = i: lib.concatStringsSep sep (lib.sublist (i * perLine) perLine names);
+    in
+    lib.concatStringsSep "\n" (builtins.genList makeLine numLines);
+
+  packageDisplay = formatToGrid {
+    items = myPackages;
+    perLine = 10;
+  };
+
 in
-  pkgs-unstable.mkShell {
-    buildInputs = [
-      pkgs-unstable.bun
-      pkgs-unstable.nodejs
-      pkgs-unstable.prisma-engines
-      pkgs-unstable.prisma
-    ];
+pkgs.mkShell {
+  buildInputs = myPackages;
 
-    shellHook = ''
-      export PKG_CONFIG_PATH="${pkgs-unstable.openssl.dev}/lib/pkgconfig"
-      export PRISMA_SCHEMA_ENGINE_BINARY="${pkgs-unstable.prisma-engines}/bin/schema-engine"
-      export PRISMA_QUERY_ENGINE_BINARY="${pkgs-unstable.prisma-engines}/bin/query-engine"
-      export PRISMA_QUERY_ENGINE_LIBRARY="${pkgs-unstable.prisma-engines}/lib/libquery_engine.node"
-      export PRISMA_FMT_BINARY="${pkgs-unstable.prisma-engines}/bin/prisma-fmt"
-      export PATH="/home/eyups/.bun/bin:$PATH"
+  shellHook = ''
+    # Environment Variables
+    export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig"
+    export PRISMA_SCHEMA_ENGINE_BINARY="${pkgs.prisma-engines}/bin/schema-engine"
+    export PRISMA_QUERY_ENGINE_BINARY="${pkgs.prisma-engines}/bin/query-engine"
+    export PRISMA_QUERY_ENGINE_LIBRARY="${pkgs.prisma-engines}/lib/libquery_engine.node"
+    export PRISMA_FMT_BINARY="${pkgs.prisma-engines}/bin/prisma-fmt"
+    export PATH="$HOME/.bun/bin:$PATH"
 
-      cowsay "hi hacker, $(whoami)"
-      echo "Welcome to the shell!"
-      echo "Injected packages:"
-      ${echoPackages}
-    '';
-  }
+    # greetings
+    cowsay "hi hacker cat, $(whoami)"
+    echo "welcome to hacker cats club" | lolcat
+    echo -e "Injected packages:\n${packageDisplay}\n"
+  '';
+}
