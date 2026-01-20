@@ -17,7 +17,8 @@
     lazydocker
 
     # development
-    bun
+    pkgs-unstable.bun
+    pkgs-unstable.nodejs
 
     # nix language
     nil
