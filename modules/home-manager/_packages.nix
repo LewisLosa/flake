@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, pkgs-unstable, ... }:
+{
   home.packages = with pkgs; [
     # fun
     figlet
@@ -14,6 +15,7 @@
     ffmpeg
     sops
     lazydocker
+    pkgs-unstable.claude-code
 
     # development
     bun
