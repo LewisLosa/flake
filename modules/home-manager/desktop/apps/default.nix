@@ -2,7 +2,8 @@
   pkgs,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     ./kdeconnect.nix
     ./zen.nix
@@ -25,6 +26,10 @@
     cider-2
     pkgs-unstable.vscode
     pkgs-unstable.vesktop
+
+    # media
+    pkgs-unstable.qimgv
+    pkgs-unstable.mpv
 
     # games
     pkgs-unstable.prismlauncher
