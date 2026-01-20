@@ -45,5 +45,6 @@ pkgs.mkShell {
     cowsay "hi hacker cat, $(whoami)"
     echo "welcome to hacker cats club" | lolcat
     echo -e "Injected packages:\n${packageDisplay}\n"
+    exec zsh
   '';
 }
