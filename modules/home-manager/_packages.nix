@@ -13,6 +13,7 @@
     gnupg1
     ffmpeg
     sops
+    lazydocker
 
     # development
     bun

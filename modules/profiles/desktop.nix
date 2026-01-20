@@ -12,6 +12,7 @@
     ../nixos/desktop/base.nix
     ../nixos/desktop/amdgpu.nix
     ../nixos/desktop/niri-dms
+    ../nixos/docker.nix
   ];
 
   home-manager.users.${vars.username} = {
