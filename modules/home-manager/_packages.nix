@@ -15,7 +15,6 @@
     ffmpeg
     sops
     lazydocker
-    pkgs-unstable.claude-code
 
     # development
     bun
