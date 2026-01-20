@@ -1,10 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./apps
   ];
   services = {
     gnome.gnome-keyring.enable = true;
     libinput.enable = true;
+    flatpak.enable = true;
   };
 
   programs = {
