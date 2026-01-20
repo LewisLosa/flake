@@ -17,6 +17,7 @@
     ffmpegthumbnailer
 
     # gui
+    pavucontrol
     nautilus
     seahorse
     kitty
