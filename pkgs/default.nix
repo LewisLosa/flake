@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
-  aya = import ./aya { inherit pkgs; };
-in
-{
+{pkgs, ...}: let
+  aya = import ./aya {inherit pkgs;};
+in {
   environment.systemPackages = [
     aya
   ];

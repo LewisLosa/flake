@@ -13,7 +13,6 @@
         eval "$(ssh-agent -s)" &> /dev/null
         ssh-add ~/.ssh/id_ed25519 &> /dev/null
       fi
-      export PATH="/home/eyups/.bun/bin:$PATH"
     '';
     zplug = {
       enable = true;

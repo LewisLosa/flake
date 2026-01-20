@@ -3,8 +3,7 @@
   lib,
   theme,
   ...
-}:
-{
+}: {
   catppuccin = lib.mkForce {
     enable = true;
     inherit (theme) flavor accent;
@@ -42,9 +41,9 @@
     theme = {
       name = "catppuccin-${theme.flavor}-${theme.accent}-standard";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ theme.accent ];
+        accents = [theme.accent];
         size = "standard";
-        tweaks = [ ];
+        tweaks = [];
         variant = theme.flavor;
       };
     };

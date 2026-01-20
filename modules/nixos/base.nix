@@ -3,8 +3,7 @@
   vars,
   pkgs-unstable,
   ...
-}:
-{
+}: {
   imports = [
     ./_packages.nix
   ];

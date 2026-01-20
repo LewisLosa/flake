@@ -2,8 +2,7 @@
   pkgs,
   pkgs-unstable,
   ...
-}:
-{
+}: {
   imports = [
     ./kdeconnect.nix
     ./zen.nix

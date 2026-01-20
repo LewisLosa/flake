@@ -1,5 +1,8 @@
-{ pkgs, pkgs-unstable, ... }:
 {
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   home.packages = with pkgs; [
     # fun
     figlet
@@ -15,10 +18,6 @@
     ffmpeg
     sops
     lazydocker
-
-    # development
-    pkgs-unstable.bun
-    pkgs-unstable.nodejs
 
     # nix language
     nil
