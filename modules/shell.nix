@@ -1,4 +1,6 @@
-{ pkgs-unstable ? import <nixpkgs> {} }:
+{
+  pkgs-unstable ? import <nixpkgs> { },
+}:
 
 let
   pkgs = pkgs-unstable;
@@ -12,7 +14,12 @@ let
   ];
 
   # Convert list to grid
-  formatToGrid = { items, perLine ? 10, sep ? ", " }:
+  formatToGrid =
+    {
+      items,
+      perLine ? 10,
+      sep ? ", ",
+    }:
     let
       names = map (item: item.pname or item.name) items;
       len = builtins.length names;

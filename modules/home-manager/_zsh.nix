@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -9,6 +10,7 @@
     };
     initContent = ''
       microfetch
+      export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
       if [ -z "$SSH_AUTH_SOCK" ]; then
         eval "$(ssh-agent -s)" &> /dev/null
         ssh-add ~/.ssh/id_ed25519 &> /dev/null
@@ -17,7 +19,7 @@
     zplug = {
       enable = true;
       plugins = [
-        {name = "zsh-users/zsh-autosuggestions";}
+        { name = "zsh-users/zsh-autosuggestions"; }
         {
           name = "romkatv/powerlevel10k";
           tags = [
