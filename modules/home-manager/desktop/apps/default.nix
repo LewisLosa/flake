@@ -23,6 +23,7 @@
     kitty
     zed-editor
     cider-2
+    pkgs-unstable.code-cursor
     pkgs-unstable.vscode
     pkgs-unstable.vesktop
 
