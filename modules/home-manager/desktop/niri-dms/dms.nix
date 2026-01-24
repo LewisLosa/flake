@@ -3,8 +3,7 @@
   pkgs,
   pkgs-unstable,
   ...
-}:
-{
+}: {
   imports = [
     inputs.niri.homeModules.niri
     inputs.dms.homeModules.dank-material-shell

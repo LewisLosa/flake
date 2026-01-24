@@ -5,8 +5,7 @@
   outputs,
   theme,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-conf.nix
     ./../../modules/profiles/desktop.nix
