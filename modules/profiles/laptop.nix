@@ -1,6 +1,6 @@
 { ... }:
 {
-  import = [
-    ../nixos/laptop/suspend.nix
+  imports = [
+    ../nixos/laptop/base.nix
   ];
 }

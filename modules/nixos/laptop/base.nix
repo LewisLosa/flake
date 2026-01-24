@@ -1,6 +1,6 @@
 { ... }:
 {
-  import = [
+  imports = [
     ./suspend.nix
   ];
   services.batteryNotifier = {
