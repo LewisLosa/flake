@@ -1,8 +1,10 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     inputs.niri.homeModules.niri
     inputs.dms.homeModules.dank-material-shell
@@ -16,6 +18,7 @@
     enable = true;
     enableSystemMonitoring = true;
     dgop.package = inputs.dgop.packages.${pkgs.system}.default;
+    quickshell.package = pkgs-unstable.quickshell;
     systemd = {
       enable = true;
       restartIfChanged = true;

@@ -2,7 +2,8 @@
   pkgs,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     ./kdeconnect.nix
     ./zen.nix
@@ -26,6 +27,7 @@
     pkgs-unstable.code-cursor
     pkgs-unstable.vscode
     pkgs-unstable.vesktop
+    pkgs-unstable.postman
 
     # media
     pkgs-unstable.qimgv

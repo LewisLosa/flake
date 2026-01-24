@@ -23,64 +23,68 @@
     };
     dms = {
       url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     dgop = {
       url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     danksearch = {
       url = "github:AvengeMedia/danksearch";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    vars = import ./vars.nix;
-    theme = import ./theme.nix;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      vars = import ./vars.nix;
+      theme = import ./theme.nix;
 
-    system = "x86_64-linux";
-    systems = [system];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+      system = "x86_64-linux";
+      systems = [ system ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
 
-    mkNixOSConfig = path:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            vars
-            theme
-            pkgs-unstable
-            ;
+      mkNixOSConfig =
+        path:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              vars
+              theme
+              pkgs-unstable
+              ;
+          };
+          modules = [ path ];
         };
-        modules = [path];
+    in
+    {
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      devShells = forAllSystems (system: {
+        default = import ./modules/shell.nix {
+          inherit pkgs-unstable;
+        };
+      });
+      nixosConfigurations = {
+        yoga = mkNixOSConfig ./machines/yoga;
+        asus = mkNixOSConfig ./machines/asus;
+        isochan = mkNixOSConfig ./machines/isochan;
       };
-  in {
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-    devShells = forAllSystems (system: {
-      default = import ./modules/shell.nix {
-        inherit pkgs-unstable;
-      };
-    });
-    nixosConfigurations = {
-      yoga = mkNixOSConfig ./machines/yoga;
-      asus = mkNixOSConfig ./machines/asus;
-      isochan = mkNixOSConfig ./machines/isochan;
     };
-  };
 }
