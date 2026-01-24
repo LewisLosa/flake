@@ -5,10 +5,12 @@
   outputs,
   theme,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-conf.nix
     ./../../modules/profiles/desktop.nix
+    ./../../modules/profiles/laptop.nix
     ./../../pkgs/default.nix
   ];
 
