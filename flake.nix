@@ -1,3 +1,4 @@
+# this is my flake
 {
   description = "A simple NixOS flake for sengozhome :=)";
 
