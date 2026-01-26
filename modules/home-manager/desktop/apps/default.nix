@@ -24,6 +24,7 @@
     kitty
     zed-editor
     cider-2
+    pkgs-unstable.antigravity
     pkgs-unstable.windsurf
     pkgs-unstable.vscode
     pkgs-unstable.vesktop
