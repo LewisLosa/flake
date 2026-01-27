@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./apps
   ];
@@ -14,7 +15,6 @@
       openFirewall = true;
     };
     ssh = {
-      askPassword = "${pkgs.gcr}/libexec/gcr-ssh-askpass";
       enableAskPassword = true;
     };
     nix-ld.enable = true;
