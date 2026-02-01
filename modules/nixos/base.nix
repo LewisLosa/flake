@@ -55,6 +55,7 @@
     ];
     shell = pkgs.zsh;
     useDefaultShell = true;
+    ignoreShellProgramCheck = true;
   };
 
   services = {
@@ -76,7 +77,7 @@
     };
     fstrim.enable = true;
   };
-
+  programs.zsh.enable = true;
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
       ExecStart = [
