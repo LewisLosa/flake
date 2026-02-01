@@ -8,7 +8,7 @@
 }: {
   imports = [
     ./hardware-conf.nix
-    ./../../modules/profiles/desktop.nix
+    ./../../modules/profiles/server.nix
   ];
 
   home-manager = {
