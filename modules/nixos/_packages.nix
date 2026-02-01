@@ -16,5 +16,6 @@
     tree
     statix
     imagemagick
+    net-tools
   ];
 }
