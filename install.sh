@@ -68,9 +68,9 @@ ssh-keygen -t ed25519 -N "" -f /mnt/nix/secret/initrd/initrd_age_key
 chmod 600 /mnt/nix/secret/initrd/initrd_age_key
 
 echo ""
-echo "Age public key (add this to .sops.yaml):"
 echo "this process may take a while..."
 echo ""
+echo "Age public key (add this to .sops.yaml):"
 echo "---------------"
 nix-shell --extra-experimental-features flakes -p ssh-to-age --run \
   "ssh-to-age -i /mnt/nix/secret/initrd/initrd_age_key.pub"
