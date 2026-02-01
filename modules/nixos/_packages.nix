@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     efibootmgr
     git
@@ -17,5 +18,6 @@
     statix
     imagemagick
     net-tools
+    ssh-to-age
   ];
 }
