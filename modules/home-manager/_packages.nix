@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # fun
     figlet
@@ -9,7 +10,6 @@
 
     # tools
     stow
-    sops
     just
     gnupg1
     ffmpeg
