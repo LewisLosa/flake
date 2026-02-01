@@ -12,6 +12,7 @@ if ! command -v nixos-install >/dev/null 2>&1; then
 fi
 
 clear
+echo "losa nixos installer v0.5"
 echo "available partitions:"
 lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,LABEL
 echo ""
