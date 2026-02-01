@@ -2,8 +2,7 @@
   inputs,
   vars,
   ...
-}:
-{
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./_packages.nix

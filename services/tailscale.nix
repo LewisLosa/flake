@@ -1,6 +1,9 @@
-{ config, pkgs-unstable, ... }:
 {
-  sops.secrets."tailscale-authkey" = { };
+  config,
+  pkgs-unstable,
+  ...
+}: {
+  sops.secrets."tailscale-authkey" = {};
 
   services.tailscale = {
     enable = true;
@@ -12,5 +15,4 @@
     ];
     package = pkgs-unstable.tailscale;
   };
-
 }
