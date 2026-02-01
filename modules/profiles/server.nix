@@ -2,7 +2,8 @@
   inputs,
   vars,
   ...
-}: {
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../nixos/base.nix

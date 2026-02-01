@@ -15,6 +15,7 @@
     ffmpeg
     sops
     lazydocker
+    direnv
 
     # nix language
     nil
