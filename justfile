@@ -28,5 +28,14 @@ lint:
 rebuild:
     nixos-rebuild switch --flake .
 
+sops-edit:
+    sops secrets/secrets.yaml
+
+sops-rotate:
+    for file in secrets/*; do sops --rotate --in-place "$file"; done
+
+sops-update:
+    for file in secrets/*; do sops updatekeys "$file"; done
+
 update:
     nix flake update

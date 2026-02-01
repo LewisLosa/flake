@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./apps
   ];
@@ -34,4 +33,9 @@
     adb.enable = true; # for my android phone :D
   };
 
+  # Desktop-only services
+  hardware.bluetooth.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+  services.accounts-daemon.enable = true;
 }

@@ -2,12 +2,13 @@
   inputs,
   vars,
   ...
-}: {
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../nixos/base.nix
-    ../nixos/printer.nix
     ../nixos/docker.nix
+    ../nixos/server
   ];
 
   home-manager.users.${vars.username} = {

@@ -9,6 +9,7 @@
 
     # tools
     stow
+    sops
     just
     gnupg1
     ffmpeg
