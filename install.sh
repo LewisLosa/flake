@@ -56,6 +56,28 @@ mount --mkdir "$BOOT_PART" /mnt/boot
 
 echo ""
 echo "NixOS partitions mounted successfully"
+
 echo ""
-echo "next steps:"
+echo "Generating initrd age identity key..."
+
+mkdir -p /mnt/nix/secret/initrd
+chmod 700 /mnt/nix/secret /mnt/nix/secret/initrd
+
+ssh-keygen -t ed25519 -N "" -f /mnt/nix/secret/initrd/initrd_age_key
+chmod 600 /mnt/nix/secret/initrd/initrd_age_key
+
+echo ""
+echo "Age public key (add this to .sops.yaml):"
+
+nix-shell --extra-experimental-features flakes -p ssh-to-age --run \
+  "ssh-to-age -i /mnt/nix/secret/initrd/initrd_age_key.pub"
+
+echo ""
+echo "IMPORTANT:"
+echo "- add the age key above to .sops.yaml"
+echo "- run: sops updatekeys secrets/*"
+echo "- then continue with nixos-install"
+
+echo ""
+echo "next step example:"
 echo "nixos-install --no-root-passwd --root /mnt --flake github:lewislosa/flake#hostname"
