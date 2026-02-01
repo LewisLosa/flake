@@ -3,7 +3,8 @@
   vars,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     ./_packages.nix
   ];
@@ -52,6 +53,8 @@
     openssh.authorizedKeys.keys = [
       vars.sshPublicKey
     ];
+    shell = pkgs.zsh;
+    useDefaultShell = true;
   };
 
   services = {
