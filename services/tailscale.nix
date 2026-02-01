@@ -4,12 +4,12 @@
   ...
 }:
 {
-  sops.secrets."services.tailscale.authkey" = { };
+  sops.secrets."services/tailscale/authkey" = { };
 
   services.tailscale = {
     enable = true;
     openFirewall = true;
-    authKeyFile = config.sops.secrets."services.tailscale.authkey".path;
+    authKeyFile = config.sops.secrets."services/tailscale/authkey".path;
     useRoutingFeatures = "server";
     extraUpFlags = [
       "--advertise-routes=10.0.0.0/16"
