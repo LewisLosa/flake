@@ -14,6 +14,7 @@
     gnupg1
     ffmpeg
     sops
+    lazydocker
 
     # nix language
     nil
