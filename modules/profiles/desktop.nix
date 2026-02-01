@@ -12,16 +12,18 @@
     ../nixos/desktop/base.nix
     ../nixos/desktop/amdgpu.nix
     ../nixos/desktop/niri-dms
-    ../../services/docker.nix
+
     ../../services/tailscale.nix
   ];
 
   home-manager.users.${vars.username} = {
     imports = [
       inputs.catppuccin.homeModules.catppuccin
+      ../../services/docker.nix
       ../home-manager/base.nix
       ../home-manager/git.nix
       ../home-manager/desktop
+
       ../home-manager/desktop/niri-dms
     ];
   };
