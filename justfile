@@ -7,7 +7,7 @@ deploy machine='' ip='':
     elif [ -z "{{ ip }}" ]; then \
       nixos-rebuild switch --sudo --flake ".#{{ machine }}"; \
     else \
-      nixos-rebuild switch --fast --sudo \
+      nixos-rebuild switch --no-reexec --sudo \
         --flake ".#{{ machine }}" \
         --target-host "eyups@{{ ip }}" \
         --build-host "eyups@{{ ip }}"; \
