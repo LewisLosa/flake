@@ -12,7 +12,7 @@ if ! command -v nixos-install >/dev/null 2>&1; then
 fi
 
 clear
-echo "losa nixos installer v0.5"
+echo "losa nixos installer v0.5.1"
 echo "available partitions:"
 lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,LABEL
 echo ""
@@ -69,10 +69,12 @@ chmod 600 /mnt/nix/secret/initrd/initrd_age_key
 
 echo ""
 echo "Age public key (add this to .sops.yaml):"
-
+echo "this process may take a while..."
+echo ""
+echo "---------------"
 nix-shell --extra-experimental-features flakes -p ssh-to-age --run \
   "ssh-to-age -i /mnt/nix/secret/initrd/initrd_age_key.pub"
-
+echo "---------------"
 echo ""
 echo "IMPORTANT:"
 echo "- add the age key above to .sops.yaml"
