@@ -1,17 +1,15 @@
 {
   inputs,
-  pkgs,
   vars,
-  pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./_packages.nix
     ./ssh.nix
     ./boot.nix
     ./user.nix
-    ./tailscale.nix
   ];
 
   time.timeZone = vars.timezone;

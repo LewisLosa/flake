@@ -7,8 +7,9 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../nixos/base.nix
-    ../nixos/docker.nix
     ../nixos/server
+    ../../services/docker.nix
+    ../../services/tailscale.nix
   ];
 
   home-manager.users.${vars.username} = {

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # fun
     figlet
@@ -14,7 +15,6 @@
     gnupg1
     ffmpeg
     sops
-    lazydocker
 
     # nix language
     nil

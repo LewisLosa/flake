@@ -3,7 +3,8 @@
   inputs,
   vars,
   ...
-}: {
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
@@ -12,7 +13,8 @@
     ../nixos/desktop/base.nix
     ../nixos/desktop/amdgpu.nix
     ../nixos/desktop/niri-dms
-    ../nixos/docker.nix
+    ../../services/docker.nix
+    ../../services/tailscale.nix
   ];
 
   home-manager.users.${vars.username} = {
