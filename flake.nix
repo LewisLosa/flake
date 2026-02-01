@@ -81,7 +81,7 @@
     nixosConfigurations = {
       yoga = mkNixOSConfig ./machines/yoga;
       asus = mkNixOSConfig ./machines/asus;
-      thinky = mkNixOSConfig ./machines/asus;
+      thinky = mkNixOSConfig ./machines/thinky;
       isochan = mkNixOSConfig ./machines/isochan;
     };
   };
