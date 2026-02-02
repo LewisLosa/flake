@@ -2,7 +2,8 @@
   pkgs,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     ./kdeconnect.nix
     ./zen.nix
@@ -23,6 +24,7 @@
     kitty
     zed-editor
     cider-2
+    pkgs-unstable.tor-browser-bundle-bin
     pkgs-unstable.antigravity
     pkgs-unstable.windsurf
     pkgs-unstable.vscode
