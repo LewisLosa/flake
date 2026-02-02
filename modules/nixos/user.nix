@@ -7,7 +7,7 @@
 {
   sops = {
     defaultSopsFile = ./../../secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/nix/secret/initrd/age_ed25519_key" ];
+    age.sshKeyPaths = [ "/nix/secret/initrd/initrd_age_key" ];
     secrets."users/eyups/password".neededForUsers = true;
     secrets."users/eyups/password" = { };
     # inspo: https://github.com/Mic92/sops-nix/issues/427
