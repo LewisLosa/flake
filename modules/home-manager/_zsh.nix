@@ -1,4 +1,5 @@
-{...}: {
+{ pkgs, ... }:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -18,7 +19,7 @@
     zplug = {
       enable = true;
       plugins = [
-        {name = "zsh-users/zsh-autosuggestions";}
+        { name = "zsh-users/zsh-autosuggestions"; }
         {
           name = "romkatv/powerlevel10k";
           tags = [
@@ -29,6 +30,11 @@
       ];
     };
     plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
       {
         name = "powerlevel10k-config";
         src = ./_p10k;
