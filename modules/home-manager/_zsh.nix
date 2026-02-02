@@ -41,6 +41,5 @@
         file = "p10k.zsh";
       }
     ];
-    history.size = 10000;
   };
 }
