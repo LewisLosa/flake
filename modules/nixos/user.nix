@@ -14,6 +14,7 @@
     gnupg.sshKeyPaths = [ ];
   };
 
+  users.mutableUsers = false;
   users.users.${vars.username} = {
     isNormalUser = true;
     description = vars.username;
