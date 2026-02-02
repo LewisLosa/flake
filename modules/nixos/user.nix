@@ -10,6 +10,13 @@
     age.sshKeyPaths = [ "/nix/secret/initrd/initrd_age_key" ];
     secrets."users/eyups/password".neededForUsers = true;
     secrets."users/eyups/password" = { };
+
+    secrets."users/eyups/ssh-config" = {
+      owner = vars.username;
+      path = "/home/${vars.username}/.ssh/config";
+      mode = "0600";
+    };
+
     # inspo: https://github.com/Mic92/sops-nix/issues/427
     gnupg.sshKeyPaths = [ ];
   };

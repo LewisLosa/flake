@@ -28,8 +28,14 @@ lint:
 rebuild:
     nixos-rebuild switch --flake .
 
-sops-edit:
-    sops secrets/secrets.yaml
+sops-edit editor='':
+    @if [ "{{ editor }}" = "code" ]; then \
+      SOPS_EDITOR="code --wait --new-window --disable-workspace-trust --disable-extensions --disable-telemetry" \
+      sops secrets/secrets.yaml; \
+    else \
+      sops secrets/secrets.yaml; \
+    fi
+
 
 sops-rotate:
     for file in secrets/*; do sops --rotate --in-place "$file"; done
