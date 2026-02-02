@@ -24,7 +24,7 @@
     kitty
     zed-editor
     cider-2
-    pkgs-unstable.tor-browser-bundle-bin
+    pkgs-unstable.tor-browser
     pkgs-unstable.antigravity
     pkgs-unstable.windsurf
     pkgs-unstable.vscode
