@@ -1,7 +1,7 @@
 keys:
   - &thinky age1j70srn45w6yag7mpchy2qqdsakvfnxhdtxw9dsrh0j8dmgc7hsqqz5uwe7
   - &asus age1l6975kahxpz0w2yrn05mg3vesf8v68f4njn6dc2yeztqt72l59nsvrx6vx
-  - &yoga age1paw0qtjnp5rave0v0h5gm0tufy5py77g4jru8kfczu4kgz4vwswqmud5su
+  - &yoga age16h5ywj0780dmprf7s7pcuq3x9tzjghxqxrst0r3y453wgvxfkplqu05x50
   - &konata age1ealclccqvzs4ejphuchzqz7j7lh5zhcqw9xuvh9f9542cl8jfdzqn00847
 creation_rules:
   - path_regex: secrets/[^/]+(\.(yaml|json|env|ini|conf))?$
