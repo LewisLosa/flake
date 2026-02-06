@@ -18,6 +18,7 @@
     ffmpegthumbnailer
 
     # gui
+    rustdesk
     pavucontrol
     nautilus
     seahorse
