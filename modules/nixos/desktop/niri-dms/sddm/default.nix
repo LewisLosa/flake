@@ -1,9 +1,10 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./theme.nix
   ];
   services = {
-    xserver.displayManager.sddm = {
+    displayManager.sddm = {
       wayland.enable = true;
       enable = true;
     };
