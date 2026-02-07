@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -17,7 +16,7 @@
     enable = true;
     enableSystemMonitoring = true;
     dgop.package = inputs.dgop.packages.${pkgs.system}.default;
-    quickshell.package = pkgs-unstable.quickshell;
+    quickshell.package = pkgs.quickshell;
     systemd = {
       enable = true;
       restartIfChanged = true;

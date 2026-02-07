@@ -19,9 +19,11 @@
     pkgs.gcr
   ];
   services.xserver = {
-    displayManager.sessionCommands = ''
-      export SSH_AUTH_SOCK
-    '';
+    displayManager = {
+      sessionCommands = ''
+        export SSH_AUTH_SOCK
+      '';
+    };
   };
 
   programs = {
@@ -30,8 +32,10 @@
       openFirewall = true;
     };
     nix-ld.enable = true;
-    adb.enable = true; # for my android phone :D
   };
+
+  # android-tools for adb command (systemd 258 handles uaccess rules automatically)
+  environment.systemPackages = [pkgs.android-tools];
 
   # Desktop-only services
   hardware.bluetooth.enable = true;

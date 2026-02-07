@@ -1,9 +1,4 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
-{
+{pkgs, ...}: {
   imports = [
     ./kdeconnect.nix
     ./zen.nix
@@ -25,18 +20,18 @@
     kitty
     zed-editor
     cider-2
-    pkgs-unstable.tor-browser
-    pkgs-unstable.antigravity
-    pkgs-unstable.windsurf
-    pkgs-unstable.vscode
-    pkgs-unstable.vesktop
-    pkgs-unstable.postman
+    tor-browser
+    antigravity
+    windsurf
+    vscode
+    vesktop
+    postman
 
     # media
-    pkgs-unstable.qimgv
-    pkgs-unstable.mpv
+    qimgv
+    mpv
 
     # games
-    pkgs-unstable.prismlauncher
+    prismlauncher
   ];
 }

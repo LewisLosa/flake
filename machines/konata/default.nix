@@ -1,6 +1,6 @@
 {
   inputs,
-  pkgs-unstable,
+  pkgs-stable,
   vars,
   outputs,
   theme,
@@ -18,7 +18,7 @@
         outputs
         vars
         theme
-        pkgs-unstable
+        pkgs-stable
         ;
     };
     useGlobalPkgs = true;

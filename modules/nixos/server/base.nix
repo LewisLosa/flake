@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # Server-specific base configuration
   # This can be expanded with server-specific optimizations
   networking.firewall.allowPing = true;

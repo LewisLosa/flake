@@ -2,14 +2,12 @@
   inputs,
   vars,
   ...
-}:
-{
+}: {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager-stable.nixosModules.home-manager
     ../nixos/base.nix
     ../nixos/server
     ../../services/docker.nix
-
     ../../services/tailscale.nix
   ];
 

@@ -1,8 +1,4 @@
-{
-  pkgs-unstable,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs = {
     gamemode = {
       enable = true;
@@ -20,7 +16,7 @@
     };
   };
   environment.systemPackages = [
-    pkgs-unstable.mangohud
-    pkgs-unstable.goverlay
+    pkgs.mangohud
+    pkgs.goverlay
   ];
 }

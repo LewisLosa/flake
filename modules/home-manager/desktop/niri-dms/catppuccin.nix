@@ -10,11 +10,6 @@
 
     kvantum = {
       enable = false;
-      assertStyle = false;
-    };
-    qt5ct = {
-      enable = false;
-      assertStyle = false;
     };
 
     cursors = {
@@ -28,47 +23,4 @@
       inherit (theme) accent flavor;
     };
   };
-
-  gtk = lib.mkForce {
-    enable = true;
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        inherit (theme) accent flavor;
-      };
-    };
-    theme = {
-      name = "catppuccin-${theme.flavor}-${theme.accent}-standard";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [theme.accent];
-        size = "standard";
-        tweaks = [];
-        variant = theme.flavor;
-      };
-    };
-
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
-
-  home.pointerCursor = lib.mkForce {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "catppuccin-${theme.flavor}-dark-cursors";
-    package = pkgs.catppuccin-cursors."${theme.flavor}Dark";
-    size = 24;
-  };
-
-  home.sessionVariables = {
-    XCURSOR_THEME = "catppuccin-${theme.flavor}-dark-cursors";
-    XCURSOR_SIZE = "24";
-  };
-
-  xdg.configFile."gtk-4.0/gtk.css".force = true;
 }

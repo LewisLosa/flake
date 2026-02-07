@@ -1,10 +1,9 @@
 {
   config,
-  pkgs-unstable,
+  pkgs,
   ...
-}:
-{
-  sops.secrets."services/tailscale/authkey" = { };
+}: {
+  sops.secrets."services/tailscale/authkey" = {};
 
   services.tailscale = {
     enable = true;
@@ -14,6 +13,6 @@
     extraUpFlags = [
       "--advertise-routes=10.0.0.0/16"
     ];
-    package = pkgs-unstable.tailscale;
+    package = pkgs.tailscale;
   };
 }

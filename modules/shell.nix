@@ -1,6 +1,6 @@
 {pkgs-unstable ? import <nixpkgs> {}}: let
   pkgs = pkgs-unstable;
-  lib = pkgs.lib;
+  inherit (pkgs) lib;
 
   myPackages = [
     pkgs.bun
@@ -33,18 +33,13 @@ in
     buildInputs = myPackages;
 
     shellHook = ''
-      # Environment Variables
-      export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig"
       export PRISMA_SCHEMA_ENGINE_BINARY="${pkgs.prisma-engines}/bin/schema-engine"
       export PRISMA_QUERY_ENGINE_BINARY="${pkgs.prisma-engines}/bin/query-engine"
       export PRISMA_QUERY_ENGINE_LIBRARY="${pkgs.prisma-engines}/lib/libquery_engine.node"
       export PRISMA_FMT_BINARY="${pkgs.prisma-engines}/bin/prisma-fmt"
-      export PATH="$HOME/.bun/bin:$PATH"
 
-      # greetings
-      cowsay "hi hacker cat, $(whoami)"
-      echo "welcome to hacker cats club" | lolcat
-      echo -e "Injected packages:\n${packageDisplay}\n"
-      exec zsh
+      echo "📦 Packages:"
+      echo "${packageDisplay}"
+      echo ""
     '';
   }

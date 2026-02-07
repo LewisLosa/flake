@@ -3,10 +3,9 @@
   inputs,
   vars,
   ...
-}:
-{
+}: {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager-unstable.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
     ../nixos/base.nix
     ../nixos/printer.nix
@@ -14,7 +13,6 @@
     ../nixos/desktop/amdgpu.nix
     ../nixos/desktop/niri-dms
     ../../services/docker.nix
-
     ../../services/tailscale.nix
   ];
 
@@ -24,7 +22,6 @@
       ../home-manager/base.nix
       ../home-manager/git.nix
       ../home-manager/desktop
-
       ../home-manager/desktop/niri-dms
     ];
   };
