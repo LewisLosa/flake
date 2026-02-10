@@ -12,5 +12,6 @@
     open-sans
     roboto
     ubuntu-classic
+    ibm-plex
   ];
 }

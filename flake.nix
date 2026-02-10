@@ -47,89 +47,94 @@
     catppuccin = {
       url = "github:catppuccin/nix";
     };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.home-manager.follows = "home-manager-unstable";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs-stable,
-      nixpkgs-unstable,
-      home-manager-stable,
-      home-manager-unstable,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      vars = import ./vars.nix;
-      theme = import ./theme.nix;
+  outputs = {
+    self,
+    nixpkgs-stable,
+    nixpkgs-unstable,
+    home-manager-stable,
+    home-manager-unstable,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    vars = import ./vars.nix;
+    theme = import ./theme.nix;
 
-      system = "x86_64-linux";
-      systems = [ system ];
-      forAllSystems = nixpkgs-stable.lib.genAttrs systems;
+    system = "x86_64-linux";
+    systems = [system];
+    forAllSystems = nixpkgs-stable.lib.genAttrs systems;
 
-      # Helper to create pkgs from a nixpkgs input
-      mkPkgs =
-        nixpkgs:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-
-      pkgs-stable = mkPkgs nixpkgs-stable;
-      pkgs-unstable = mkPkgs nixpkgs-unstable;
-
-      # Helper for desktop/laptop systems (uses unstable)
-      mkDesktopConfig =
-        path:
-        nixpkgs-unstable.lib.nixosSystem {
-          specialArgs = {
-            inherit
-              inputs
-              outputs
-              vars
-              theme
-              pkgs-unstable
-              ;
-          };
-          modules = [ path ];
-        };
-
-      # Helper for server systems (uses stable)
-      mkServerConfig =
-        path:
-        nixpkgs-stable.lib.nixosSystem {
-          specialArgs = {
-            inherit
-              inputs
-              outputs
-              vars
-              theme
-              pkgs-stable
-              ;
-          };
-          modules = [ path ];
-        };
-    in
-    {
-      formatter = forAllSystems (system: nixpkgs-stable.legacyPackages.${system}.alejandra);
-
-      devShells = forAllSystems (system: {
-        default = import ./modules/shell.nix {
-          inherit pkgs-unstable;
-        };
-      });
-
-      nixosConfigurations = {
-        # Desktop/Laptop systems - use unstable
-        yoga = mkDesktopConfig ./machines/yoga;
-        asus = mkDesktopConfig ./machines/asus;
-
-        # Server systems - use stable
-        thinky = mkServerConfig ./machines/thinky;
-        konata = mkServerConfig ./machines/konata;
-
-        # ISO installer - use stable
-        isochan = mkServerConfig ./machines/isochan;
+    # Helper to create pkgs from a nixpkgs input
+    mkPkgs = nixpkgs:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
       };
+
+    pkgs-stable = mkPkgs nixpkgs-stable;
+    pkgs-unstable = mkPkgs nixpkgs-unstable;
+
+    # Helper for desktop/laptop systems (uses unstable)
+    mkDesktopConfig = path:
+      nixpkgs-unstable.lib.nixosSystem {
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            vars
+            theme
+            pkgs-unstable
+            ;
+        };
+        modules = [path];
+      };
+
+    # Helper for server systems (uses stable)
+    mkServerConfig = path:
+      nixpkgs-stable.lib.nixosSystem {
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            vars
+            theme
+            pkgs-stable
+            ;
+        };
+        modules = [path];
+      };
+  in {
+    formatter = forAllSystems (system: nixpkgs-stable.legacyPackages.${system}.alejandra);
+
+    devShells = forAllSystems (system: {
+      default = import ./modules/shell.nix {
+        inherit pkgs-unstable;
+      };
+    });
+
+    nixosConfigurations = {
+      # Desktop/Laptop systems - use unstable
+      yoga = mkDesktopConfig ./machines/yoga;
+      asus = mkDesktopConfig ./machines/asus;
+
+      # Server systems - use stable
+      thinky = mkServerConfig ./machines/thinky;
+      konata = mkServerConfig ./machines/konata;
+
+      # ISO installer - use stable
+      isochan = mkServerConfig ./machines/isochan;
     };
+  };
 }

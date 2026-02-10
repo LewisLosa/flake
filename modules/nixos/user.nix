@@ -3,11 +3,10 @@
   vars,
   pkgs,
   ...
-}:
-{
+}: {
   sops = {
     defaultSopsFile = ./../../secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/nix/secret/initrd/initrd_age_key" ];
+    age.sshKeyPaths = ["/nix/secret/initrd/initrd_age_key"];
     secrets = {
       "users/eyups/password" = {
         neededForUsers = true;
@@ -20,7 +19,7 @@
     };
 
     # inspo: https://github.com/Mic92/sops-nix/issues/427
-    gnupg.sshKeyPaths = [ ];
+    gnupg.sshKeyPaths = [];
   };
 
   users.mutableUsers = false;

@@ -13,6 +13,7 @@
     ffmpegthumbnailer
 
     # gui
+    anydesk
     rustdesk
     pavucontrol
     nautilus

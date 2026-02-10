@@ -2,8 +2,7 @@
   inputs,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.niri.homeModules.niri
     inputs.dms.homeModules.dank-material-shell

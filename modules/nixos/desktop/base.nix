@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./apps
   ];
@@ -7,17 +11,12 @@
     flatpak.enable = true;
   };
 
-  programs.seahorse.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services = {
-    greetd.enableGnomeKeyring = true;
-    greetd-password.enableGnomeKeyring = true;
-    login.enableGnomeKeyring = true;
-  };
-  services.dbus.packages = [
-    pkgs.gnome-keyring
-    pkgs.gcr
-  ];
+  # GNOME keyring is only enabled when using Niri-DMS
+  # Plasma uses its own KWallet-based secret management
+  # These settings are moved to the niri-dms module to avoid conflicts
+  programs.seahorse.enable = lib.mkDefault false;
+  services.gnome.gnome-keyring.enable = lib.mkDefault false;
+
   services.xserver = {
     displayManager = {
       sessionCommands = ''
