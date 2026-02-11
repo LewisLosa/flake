@@ -16,7 +16,13 @@ _: {
 
   # Set console keyboard layout
   console.keyMap = "trq";
-
+  programs.ssh = {
+    startAgent = true;
+    enableAskPassword = true;
+  };
+  environment.variables = {
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
   services = {
     # Enable KDE Plasma desktop environment
     desktopManager.plasma6.enable = true;

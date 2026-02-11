@@ -1,4 +1,5 @@
 _: {
+
   services.openssh = {
     enable = true;
     settings = {
@@ -8,4 +9,10 @@ _: {
     };
     openFirewall = true;
   };
+  services.endlessh = {
+    enable = true;
+    port = 22;
+    openFirewall = true;
+  };
+  services.fail2ban.enable = true;
 }
