@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   imports = [
     ./fonts.nix
     ./apps
@@ -9,7 +10,7 @@
     {
       // Fixes the "an OS keyring couldn't be identified for
       // storing the encryption..." error
-      "password-store": "gnome-libsecret"
+      "password-store": "kwallet5"
     }
   '';
 }

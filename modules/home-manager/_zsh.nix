@@ -11,10 +11,12 @@
     initContent = ''
       microfetch
       export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
-      if [ -z "$SSH_AUTH_SOCK" ]; then
-        eval "$(ssh-agent -s)" &> /dev/null
-        ssh-add ~/.ssh/id_ed25519 &> /dev/null
+
+      if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        eval "$(ssh-agent -s)" > /dev/null
       fi
+
+      ssh-add -l > /dev/null 2>&1 || ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
     '';
     zplug = {
       enable = true;
