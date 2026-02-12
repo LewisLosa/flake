@@ -6,7 +6,7 @@ _: {
       PasswordAuthentication = false;
       PubkeyAuthentication = true;
     };
-    port = 50768;
+    ports = [50768];
     openFirewall = true;
   };
   services.endlessh = {
