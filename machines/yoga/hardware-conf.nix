@@ -3,8 +3,7 @@
   lib,
   modulesPath,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -18,10 +17,10 @@
         "sd_mod"
         "sdhci_pci"
       ];
-      kernelModules = [ ];
+      kernelModules = [];
     };
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
 
   fileSystems."/" = {
@@ -38,7 +37,7 @@
     ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [];
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

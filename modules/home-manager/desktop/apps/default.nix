@@ -31,9 +31,6 @@
     qimgv
     mpv
 
-    # tools
-    ventoy-full
-
     # games
     prismlauncher
   ];

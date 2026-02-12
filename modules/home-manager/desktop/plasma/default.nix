@@ -2,8 +2,7 @@
   inputs,
   lib,
   ...
-}:
-{
+}: {
   # Plasma home-manager configuration
   # Uses Plasma's native secret/keyring stack (KWallet/Plasma Vault)
   # Uses KDE's nattive QT platform integration (no qt5ct/qt6ct)
@@ -16,7 +15,7 @@
   # Enable plasma-manager for KDE native integration
   programs.plasma = {
     enable = true;
-    input.keyboard.layouts = [ { layout = "tr"; } ];
+    input.keyboard.layouts = [{layout = "tr";}];
     workspace = {
       clickItemTo = "select";
       iconTheme = "Papirus-Dark";

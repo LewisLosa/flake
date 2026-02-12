@@ -3,7 +3,7 @@ _: {
   # Uses Plasma's native secret manager / keyring stack (KWallet/Plasma Vault)
   # Uses KDE's native QT platform integration
 
-  imports = [ ];
+  imports = [];
 
   # Keyboard layout - Turkish at system level
   # This ensures the layout is applied before desktop session starts
@@ -49,7 +49,7 @@ _: {
   };
 
   # Basic Plasma dependencies
-  environment.systemPackages = [ ];
+  environment.systemPackages = [];
 
   # Environment variables for KDE native QT integration
   # These are set system-wide to ensure all sessions use KDE platform theme
