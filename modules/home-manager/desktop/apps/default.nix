@@ -14,7 +14,6 @@
 
     # gui
     anydesk
-    rustdesk
     pavucontrol
     nautilus
     seahorse
@@ -31,6 +30,9 @@
     # media
     qimgv
     mpv
+
+    # tools
+    ventoy-full
 
     # games
     prismlauncher
