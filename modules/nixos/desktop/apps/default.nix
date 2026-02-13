@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     ventoy-full
+    scrcpy
   ];
   # temp
   # inspo: https://github.com/ventoy/Ventoy/issues/3224
